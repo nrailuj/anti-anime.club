@@ -1,0 +1,78 @@
+<!-- 
+    Project: anti-anime.club
+    Description: This is a satire project for people who hate anime.
+    Author: https://github.com/nrailuj
+    GitHub Repository: https://github.com/nrailuj/anti-anime.club
+-->
+
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anti-anime.club</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="/src/favicon/favicon.png">
+    <link rel="stylesheet" href="/src/styles/style.css">
+</head>
+
+<body>
+    <div>
+        <h1 id="main-title">Anime</h1>
+        <p id="dynamic-text">ist Abfall</p>
+    </div>
+
+    <div class="language-buttons">
+        <button class="language-button" id="de">
+            <img src="/src/flags/de.svg" alt="Germany Flag"></button>
+        <button class="language-button" id="en">
+            <img src="/src/flags/gb.svg" alt="GB Flag"></button>
+    </div>
+    <div class="footer-links">
+        <a class="link" href="https://github.com/nrailuj/anti-anime.club" target="_blank">GitHub</a>
+        <span class="link">
+            Language Flag Icons are from: <a href="https://flagicons.lipis.dev" target="_blank">flagicons.lipis.dev</a>
+        </span>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // dynamic texts for each language
+            const phrases = {
+                de: ["ist Abfall", "ist Schrott", "der letzte Rotz"],
+                en: ["is trash", "is junk", "is unnecessary"]
+            };
+            // dynamic titles for each language
+            const titles = {
+                de: "Anime",
+                en: "Anime"
+            };
+
+            const textElement = document.getElementById("dynamic-text");
+            const titleElement = document.getElementById("main-title");
+            let index = 0;
+            let currentLang = "de";
+
+            // function for changing the language
+            const changeLanguage = (lang) => {
+                currentLang = lang;
+                index = 0; // resetting the index when the language is changed
+                titleElement.textContent = titles[lang];
+            };
+
+            // event listener for the buttons
+            document.getElementById("de").addEventListener('click', () => changeLanguage("de"));
+            document.getElementById("en").addEventListener('click', () => changeLanguage("en"));
+
+            // function for updating the text
+            const updateText = () => {
+                textElement.textContent = phrases[currentLang][index];
+                index = (index + 1) % phrases[currentLang].length;
+            };
+
+            // interval for the text change
+            setInterval(updateText, 2000);
+        });
+    </script>
+</body>
+
+</html>
